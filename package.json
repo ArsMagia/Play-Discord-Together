@@ -1,0 +1,15 @@
+{
+    "name": "js",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "ArsMagia",
+    "license": "MIT",
+    "dependencies": {
+        "discord-together": "^1.2.0",
+        "discord.js": "^13.1.0"
+    }
+}
