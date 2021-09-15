@@ -26,24 +26,47 @@ client.on('messageCreate', async message => {
         if (message != null && message.author !== client.user) {
             if (message.content.startsWith(prefix)) message.delete();
         }
-    }, 500);
+    }, 1000);
 
     let text = message.content.replace(prefix, '');
 
-    if (text === 'time') {
-        let nowTime = new Date();
-        let yearTime = nowTime.getFullYear();
-        let monthTime = nowTime.getMonth();
-        let dateTime = nowTime.getDate();
-        let hourTime = nowTime.getHours();
-        let minTime = nowTime.getMinutes();
+    if (text === 'help') {
 
-        return message.reply(`現在の時間: \`${yearTime}/${monthTime + 1}/${dateTime} - ${hourTime}:${minTime}\``);
     }
 
     let game = "";
 
     switch (text) {
+        case 'help':
+            const helpEmbed = {
+                color: 0x999999,
+                title: 'Discord-Together',
+                url: 'https://github.com/ArsMagia/Play-Discord-Together',
+                author: {
+                    name: author,
+                    icon_url: message.author.avatarURL.toString,
+                    url: 'https://shotbow.net',
+                },
+                description:
+                    'コマンド一覧' + '\n' +
+                    '`!yt`' + '\n' +
+                    '`!poker`' + '\n' +
+                    '`!betrayal`' + '\n' +
+                    '`!fishing`' + '\n' +
+                    '`!chess`' + '\n',
+                timestamp: new Date(),
+            };
+            return message.reply({ embeds: [helpEmbed] });
+
+        case 'time':
+            let nowTime = new Date();
+            let yearTime = nowTime.getFullYear();
+            let monthTime = nowTime.getMonth();
+            let dateTime = nowTime.getDate();
+            let hourTime = nowTime.getHours();
+            let minTime = nowTime.getMinutes();
+            return message.reply(`現在の時間: \`${yearTime}/${monthTime + 1}/${dateTime} - ${hourTime}:${minTime}\``);
+
         case 'yt':
             game = 'youtube';
             break;
