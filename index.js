@@ -29,11 +29,6 @@ client.on('messageCreate', async message => {
     }, 1000);
 
     let text = message.content.replace(prefix, '');
-
-    if (text === 'help') {
-
-    }
-
     let game = "";
 
     switch (text) {
