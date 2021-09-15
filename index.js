@@ -44,8 +44,8 @@ client.on('messageCreate', async message => {
                 url: 'https://github.com/ArsMagia/Play-Discord-Together',
                 author: {
                     name: author,
-                    icon_url: message.author.avatarURL.toString,
-                    url: 'https://shotbow.net',
+                    icon_url: message.author.avatarURL,
+                    url: '',
                 },
                 description:
                     'コマンド一覧' + '\n' +
