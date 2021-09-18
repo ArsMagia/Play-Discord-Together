@@ -10,8 +10,8 @@ client.discordTogether = new DiscordTogether(client);
 
 
 client.on('ready', () => {
-    client.user.setActivity('bobobot')
-    console.log(`${client.user.tag}でログイン中...`);
+    client.user.setActivity('bobobot', { type: 'PLAYING' })
+    console.log(`${client.user.tag}でログイン...`);
 });
 
 client.on('messageCreate', async message => {
