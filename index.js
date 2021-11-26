@@ -10,28 +10,26 @@ client.discordTogether = new DiscordTogether(client);
 
 
 client.on('ready', () => {
-    client.user.setActivity('bobobot', { type: 'PLAYING' })
+    client.user.setActivity('!help - コマンド一覧', { type: 'PLAYING' })
     console.log(`${client.user.tag}でログイン...`);
 });
 
 client.on('messageCreate', async message => {
-    let author = message.author.username;
-    let voiceChannel = message.member.voice.channel;
+    const author = message.author.username;
+    const voiceChannel = message.member.voice.channel;
+    let game = message.content.replace(prefix, '');
 
-    if (message.author === client.user) {
-        return;
-    }
+    if (message.author === client.user) return;
 
     setTimeout(() => {
         if (message != null && message.author !== client.user) {
-            if (message.content.startsWith(prefix)) message.delete();
+            if (message.content.startsWith(prefix)) message.delete().catch(console.error);
         }
     }, 1000);
 
-    let text = message.content.replace(prefix, '');
-    let game = "";
 
-    switch (text) {
+
+    switch (game) {
         case 'help':
             const helpEmbed = {
                 color: 0x999999,
@@ -48,7 +46,14 @@ client.on('messageCreate', async message => {
                     '`!poker`' + '\n' +
                     '`!betrayal`' + '\n' +
                     '`!fishing`' + '\n' +
-                    '`!chess`' + '\n',
+                    '`!chess`' + '\n' +
+                    '`!lettertile`' + '\n' +
+                    '`!wordsnack`' + '\n' +
+                    '`!doodlecrew`' + '\n' +
+                    '`!awkword`' + '\n' +
+                    '`!spellcast`' + '\n' +
+                    '`!checkers`' + '\n',
+                // '`puttparty`' + '\n'
                 timestamp: new Date(),
             };
             return message.reply({ embeds: [helpEmbed] });
@@ -73,19 +78,24 @@ client.on('messageCreate', async message => {
         case 'fishing':
         case 'chess':
         case 'chessdev':
-            game = text;
+        case 'lettertile':
+        case 'doodlecrew':
+        case 'wordsnack':
+        case 'awkword':
+        case 'spellcast':
+        case 'checkers':
+            // case 'puttparty':
             break;
+
+        default:
+            return;
     }
 
-    if (game == "") return;
+    if (!voiceChannel) return message.reply(`${author}が入っているVCを検出できませんでした。`);
 
-    if (!voiceChannel) {
-        return message.reply(`${author}が入っているVCを検出できませんでした。`);
-    }
-
-    message.reply(`${author}が \`${game}\`を開始しました。VC: ${voiceChannel}`);
+    const reply = await message.reply(`${author}が \`${game}\`を開始しました。VC: ${voiceChannel}`);
     client.discordTogether.createTogetherCode(message.member.voice.channel.id, game).then(async invite => {
-        message.channel.send(`${invite.code}`);
+        reply.edit(`${reply.content}\n${invite.code}`);
     });
 });
 
