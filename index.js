@@ -28,7 +28,6 @@ client.on('messageCreate', async message => {
     }, 1000);
 
 
-
     switch (game) {
         case 'help':
             const helpEmbed = {
@@ -57,15 +56,6 @@ client.on('messageCreate', async message => {
                 timestamp: new Date(),
             };
             return message.reply({ embeds: [helpEmbed] });
-
-        case 'time':
-            let nowTime = new Date();
-            let yearTime = nowTime.getFullYear();
-            let monthTime = nowTime.getMonth();
-            let dateTime = nowTime.getDate();
-            let hourTime = nowTime.getHours();
-            let minTime = nowTime.getMinutes();
-            return message.reply(`現在の時間: \`${yearTime}/${monthTime + 1}/${dateTime} - ${hourTime}:${minTime}\``);
 
         case 'yt':
             game = 'youtube';
