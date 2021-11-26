@@ -9,7 +9,7 @@
     "author": "ArsMagia",
     "license": "MIT",
     "dependencies": {
-        "discord-together": "^1.2.0",
+        "discord-together": "^1.3.25",
         "discord.js": "^13.1.0"
     }
 }
