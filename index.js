@@ -4,10 +4,7 @@ const { DiscordTogether } = require('discord-together');
 const config = require('./config.json');
 
 const prefix = config.prefix;
-
 client.discordTogether = new DiscordTogether(client);
-
-
 
 client.on('ready', () => {
     client.user.setActivity('!help - コマンド一覧', { type: 'PLAYING' })
@@ -27,7 +24,6 @@ client.on('messageCreate', async message => {
         }
     }, 1000);
 
-
     switch (game) {
         case 'help':
             const helpEmbed = {
@@ -40,19 +36,19 @@ client.on('messageCreate', async message => {
                     url: '',
                 },
                 description:
-                    'コマンド一覧' + '\n' +
-                    '`!yt`' + '\n' +
-                    '`!poker`' + '\n' +
-                    '`!betrayal`' + '\n' +
-                    '`!fishing`' + '\n' +
-                    '`!chess`' + '\n' +
-                    '`!lettertile`' + '\n' +
-                    '`!wordsnack`' + '\n' +
-                    '`!doodlecrew`' + '\n' +
-                    '`!awkword`' + '\n' +
-                    '`!spellcast`' + '\n' +
-                    '`!checkers`' + '\n',
-                // '`puttparty`' + '\n'
+                    'コマンド一覧\n' +
+                    '`!yt`\n' +
+                    '`!poker`\n' +
+                    '`!betrayal`\n' +
+                    '`!fishing`\n' +
+                    '`!chess`\n' +
+                    '`!lettertile`\n' +
+                    '`!wordsnack`\n' +
+                    '`!doodlecrew`\n' +
+                    '`!awkword`\n' +
+                    '`!spellcast`\n' +
+                    '`!checkers`\n',
+                // '`puttparty`\n'
                 timestamp: new Date(),
             };
             return message.reply({ embeds: [helpEmbed] });
